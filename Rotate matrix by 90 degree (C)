@@ -1,0 +1,51 @@
+#include <stdio.h>
+
+#define MAX 100
+
+void rotate90Clockwise(int matrix[MAX][MAX], int n) {
+    
+    for (int i = 0; i < n; i++) {
+        for (int j = i; j < n; j++) {
+            int temp = matrix[i][j];
+            matrix[i][j] = matrix[j][i];
+            matrix[j][i] = temp;
+        }
+    }
+
+    
+    for (int i = 0; i < n; i++) {
+        for (int j = 0, k = n - 1; j < k; j++, k--) {
+            int temp = matrix[i][j];
+            matrix[i][j] = matrix[i][k];
+            matrix[i][k] = temp;
+        }
+    }
+}
+
+void printMatrix(int matrix[MAX][MAX], int n) {
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++)
+            printf("%d ", matrix[i][j]);
+        printf("\n");
+    }
+}
+
+int main() {
+    int matrix[MAX][MAX];
+    int n;
+
+    printf("Enter the size of square matrix (n x n): ");
+    scanf("%d", &n);
+
+    printf("Enter matrix elements:\n");
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++)
+            scanf("%d", &matrix[i][j]);
+
+    rotate90Clockwise(matrix, n);
+
+    printf("Matrix after 90 degree rotation:\n");
+    printMatrix(matrix, n);
+
+    return 0;
+}
